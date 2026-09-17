@@ -25,4 +25,26 @@ describe("Inbox", () => {
     expect(screen.getByText("Clarify data retention policy")).toBeInTheDocument();
     expect(screen.queryByText("Update billing contact")).not.toBeInTheDocument();
   });
+
+  it("marks overdue conversations with a badge", () => {
+    render(<Inbox />);
+
+    fireEvent.change(screen.getByRole("searchbox", { name: "Search conversations" }), {
+      target: { value: "SAML metadata refresh" },
+    });
+
+    expect(screen.getByText("SAML metadata refresh")).toBeInTheDocument();
+    expect(screen.getByText("Overdue")).toBeInTheDocument();
+  });
+
+  it("does not mark a resolved conversation overdue", () => {
+    render(<Inbox />);
+
+    fireEvent.change(screen.getByRole("searchbox", { name: "Search conversations" }), {
+      target: { value: "Restore a deleted saved view" },
+    });
+
+    expect(screen.getByText("Restore a deleted saved view")).toBeInTheDocument();
+    expect(screen.queryByText("Overdue")).not.toBeInTheDocument();
+  });
 });

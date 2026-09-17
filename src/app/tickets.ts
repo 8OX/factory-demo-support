@@ -97,6 +97,10 @@ export const tickets: Ticket[] = [
   },
 ];
 
+export function isTicketOverdue(ticket: Ticket): boolean {
+  return ticket.ageHours > 48 && ticket.status !== "Resolved";
+}
+
 export function filterTickets(
   items: Ticket[],
   query: string,
