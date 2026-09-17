@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 
 import {
   filterTickets,
+  isTicketOverdue,
   type StatusFilter,
   type Ticket,
   tickets,
@@ -46,6 +47,8 @@ function ChevronIcon() {
 }
 
 function TicketRow({ ticket }: { ticket: Ticket }) {
+  const overdue = isTicketOverdue(ticket);
+
   return (
     <article className="group grid min-w-[760px] grid-cols-[minmax(300px,1.7fr)_minmax(150px,0.85fr)_110px_120px_76px] items-center gap-4 border-t border-slate-100 px-5 py-4 transition-colors hover:bg-slate-50/70">
       <div className="min-w-0">
@@ -64,10 +67,15 @@ function TicketRow({ ticket }: { ticket: Ticket }) {
         <span className="truncate text-sm text-slate-600">{ticket.customer}</span>
       </div>
 
-      <div>
+      <div className="flex flex-wrap items-center gap-1.5">
         <span className={`inline-flex rounded-full px-2.5 py-1 text-xs font-medium ring-1 ring-inset ${statusStyles[ticket.status]}`}>
           {ticket.status}
         </span>
+        {overdue && (
+          <span className="inline-flex rounded-full bg-rose-50 px-2.5 py-1 text-xs font-medium text-rose-700 ring-1 ring-inset ring-rose-600/10">
+            Overdue
+          </span>
+        )}
       </div>
 
       <div className="flex items-center gap-2">
