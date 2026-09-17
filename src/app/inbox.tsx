@@ -114,7 +114,7 @@ export function Inbox() {
         <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
           <div>
             <h1 className="text-3xl font-semibold tracking-[-0.035em] text-slate-950">Inbox</h1>
-            <p className="mt-2 text-sm text-slate-500">Keep every customer conversation moving.</p>
+            <p className="mt-2 text-sm text-slate-500">Keep every customer conversation on track.</p>
           </div>
           <label className="relative block w-full sm:w-72">
             <span className="sr-only">Search conversations</span>
