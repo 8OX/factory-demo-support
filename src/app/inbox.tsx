@@ -173,7 +173,24 @@ export function Inbox() {
               <span>Assignee</span>
               <span className="text-right">Updated</span>
             </div>
-            {visibleTickets.map((ticket) => <TicketRow key={ticket.id} ticket={ticket} />)}
+            {visibleTickets.length > 0 ? (
+              visibleTickets.map((ticket) => <TicketRow key={ticket.id} ticket={ticket} />)
+            ) : (
+              <div className="border-t border-slate-100 px-5 py-16 text-center">
+                <h2 className="text-sm font-medium text-slate-900">No conversations found</h2>
+                <p className="mt-1 text-sm text-slate-500">Try adjusting your search or filters.</p>
+                <button
+                  className="mt-5 inline-flex items-center rounded-md bg-slate-900 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-slate-700"
+                  onClick={() => {
+                    setQuery("");
+                    setStatus("All");
+                  }}
+                  type="button"
+                >
+                  Clear filters
+                </button>
+              </div>
+            )}
           </div>
         </section>
       </main>
