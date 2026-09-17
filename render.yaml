@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: support-inbox
+    runtime: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./out
+    previews:
+      generation: automatic
